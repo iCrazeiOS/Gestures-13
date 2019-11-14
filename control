@@ -1,0 +1,9 @@
+Package: com.icraze.gestures13
+Name: Gestures13
+Depends: mobilesubstrate
+Version: 1.0.1
+Architecture: iphoneos-arm
+Description: Enable iPhone X Gestures On All Devices! (iOS 13)
+Maintainer: iCraze
+Author: iCraze & Ryan Nair
+Section: Tweaks
