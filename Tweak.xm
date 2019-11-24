@@ -1,6 +1,3 @@
-@interface CSQuickActionsView : UIView
-@end
-
 int applicationDidFinishLaunching;
 
 // No Home Bar
@@ -16,9 +13,9 @@ int applicationDidFinishLaunching;
 %end
 
 // No LS Quick-Toggles
-%hook CSQuickActionsView
--(void)setFrame:(CGRect)frame{
-	%orig(CGRectMake(100000, 100000, frame.size.width, frame.size.height));
+%hook CSQuickActionsViewController
++ (BOOL)deviceSupportsButtons {
+ 	return NO;
 }
 %end
 
@@ -81,26 +78,8 @@ int applicationDidFinishLaunching;
 %end
 
 %hook SBHomeHardwareButton
-- (id)initWithScreenshotGestureRecognizer:(id)arg1 homeButtonType:(long long)arg2 buttonActions:(id)arg3 gestureRecognizerConfiguration:(id)arg4 {
-    return %orig(arg1,1,arg3,arg4);
-}
 - (id)initWithScreenshotGestureRecognizer:(id)arg1 homeButtonType:(long long)arg2 {
     return %orig(arg1,1);
-}
-%end
-
-%hook SBLockHardwareButton
-- (id)initWithScreenshotGestureRecognizer:(id)arg1 shutdownGestureRecognizer:(id)arg2 proximitySensorManager:(id)arg3 homeHardwareButton:(id)arg4 volumeHardwareButton:(id)arg5 buttonActions:(id)arg6 homeButtonType:(long long)arg7 createGestures:(_Bool)arg8 {
-    return %orig(arg1,arg2,arg3,arg4,arg5,arg6,1,arg8);
-}
-- (id)initWithScreenshotGestureRecognizer:(id)arg1 shutdownGestureRecognizer:(id)arg2 proximitySensorManager:(id)arg3 homeHardwareButton:(id)arg4 volumeHardwareButton:(id)arg5 homeButtonType:(long long)arg6 {
-    return %orig(arg1,arg2,arg3,arg4,arg5,1);
-}
-%end
-
-%hook SBVolumeHardwareButton
-- (id)initWithScreenshotGestureRecognizer:(id)arg1 shutdownGestureRecognizer:(id)arg2 homeButtonType:(long long)arg3 {
-    return %orig(arg1,arg2,1);
 }
 %end
 
